@@ -21,7 +21,7 @@ const seedDB = async () => {
   await Campground.deleteMany({});
 
   // Iterar 50 veces en el array cities.js
-  for (let i = 0; i < 50; i++) {
+  for (let i = 0; i < 150; i++) {
     // Elegir un elemento de array cities.js al azar
     const random1000 = Math.floor(Math.random() * 1000);
 
@@ -52,7 +52,14 @@ const seedDB = async () => {
           url: 'https://res.cloudinary.com/dyx2bmsoz/image/upload/v1688681604/Yelp-Camp/dbaeoxzzbhsdjp2sqf6r.jpg',
           filename: 'Yelp-Camp/dbaeoxzzbhsdjp2sqf6r'
         }
-      ]
+      ],
+      geometry: {
+          type: 'Point', 
+          coordinates: [ 
+            cities[random1000].longitude,
+            cities[random1000].latitude
+          ] 
+      }
     });
     await camp.save();
   }
